@@ -1,19 +1,45 @@
 version: 2
 
 sources:
-    - name: raw
-      schema: gz_raw_data
-      tables:
+  - name: raw
+    schema: gz_raw_data
+    tables:
       - name: sales
         identifier: raw_gz_sales
-        description: sales of GreenWeez / we have on row per product_id found in each orders_
-        id
+        description: Sales data of GreenWeez, with one row per product_id found in each order_id.
+        columns:
+          - name: date_date
+            description: Date when the order was placed by the customer.
+          - name: order_id
+            description: Unique identifier for a customer's order.
+          - name: product_id
+            description: Unique identifier for a product in the order.
+          - name: revenue
+            description: Total income generated from a customer's order before any deductions.
+          - name: quantity
+            description: Number of units of a product included in the order.
       - name: product
         identifier: raw_gz_product
-        description: products of GreenWeez / we check the diff btween shipping_fee and shipping_fee_1 and 
+        description: Product data of GreenWeez. We check the difference between shipping_fee and shipping_fee_1.
+        columns:
+          - name: product_id
+            description: Unique identifier for a product.
+          - name: purchase_price
+            description: Price of the product when purchased.
       - name: ship
         identifier: raw_gz_ship
-        description: shipping og GreenWeez / we cast the ship_cost in FLOAT64
+        description: Shipping data of GreenWeez, where we cast the ship_cost to FLOAT64 for consistency.
+        columns:
+          - name: order_id
+            description: Unique identifier for a customer's order.
+          - name: shipping_fee_vs_shipping_fee_1
+            description: Indicates a mismatch between the initially recorded shipping fee and the updated or recalculated fee.
+          - name: logcost
+            description: Company's shipping-related logistics expense.
+          - name: ship_cost
+            description: Shipping cost billed to the company by the shipping provider.
+
+
   
 
 
