@@ -6,10 +6,14 @@ sources:
       tables:
       - name: sales
         identifier: raw_gz_sales
+        description: sales of GreenWeez / we have on row per product_id found in each orders_
+        id
       - name: product
         identifier: raw_gz_product
+        description: products of GreenWeez / we check the diff btween shipping_fee and shipping_fee_1 and 
       - name: ship
         identifier: raw_gz_ship
+        description: shipping og GreenWeez / we cast the ship_cost in FLOAT64
   
 
 
